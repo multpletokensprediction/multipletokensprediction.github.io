@@ -1,59 +1,1270 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ICASSP Paper Updates</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .container {
-            text-align: center;
-            background-color: #ffffff;
-            padding: 50px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-        }
-        h1 {
-            color: #0275d8;
-        }
-        p {
-            font-size: 18px;
-            margin-top: 20px;
-            color: #555;
-        }
-        .stay-tuned {
-            font-size: 22px;
-            margin-top: 20px;
-            color: #d9534f;
-        }
-        footer {
-            margin-top: 40px;
-            font-size: 14px;
-            color: #888;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="Accelerating Codec-based Speech Synthesis with Multi-Token Prediction and Speculative Decoding">
+  <meta name="keywords" content="Multi-Token Prediction, Speculative Decoding">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Accelerating Codec-based Speech Synthesis with Multi-Token Prediction and Speculative Decoding</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+  <link rel="icon" href="./static/images/favicon.svg">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Hello, and Welcome!</h1>
-        <p>Thank you for your interest in my ICASSP paper.</p>
-        <p class="stay-tuned">Stay tuned! I’ll be updating this page with sample audio and more information soon.</p>
-        <footer>
-            <p>from authors!</p>
-        </footer>
+<nav class="navbar" role="navigation" aria-label="main navigation">
+  <div class="navbar-brand">
+    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+      <span aria-hidden="true"></span>
+    </a>
+  </div>
+  <div class="navbar-menu">
+    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
+      <a class="navbar-item" href="https://mmai.io">
+      <span class="icon">
+          <i class="fas fa-home"></i>
+      </span>
+      </a>
+
+      <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          More Research
+        </a>
+        <div class="navbar-dropdown">
+          <a class="navbar-item" href="https://mm.kaist.ac.kr/projects/FreGrad/">
+            FreGrad
+          </a>
+          <!-- <a class="navbar-item" href="https://nerfies.github.io">
+            Nerfies
+          </a>
+          <a class="navbar-item" href="https://latentfusion.github.io">
+            LatentFusion
+          </a>
+          <a class="navbar-item" href="https://photoshape.github.io">
+            PhotoShape
+          </a> -->
+        </div>
+      </div>
     </div>
+
+  </div>
+</nav>
+
+
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Accelerating Codec-based Speech Synthesis with Multi-Token Prediction and Speculative Decoding </h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://signofthefour.github.io/">Tan Dat Nguyen</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://sites.google.com/view/jhoonkim/">Jihoon Kim</a><sup>1</sup>,</span>
+            <span class="author-block">
+              <a href="https://choijeongsoo.github.io/">Jeongsoo Choi</a><sup>1</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Shukjae Choi</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Jinseok Park</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="">Younglo Lee</a><sup>2</sup>,
+            </span>
+            <span class="author-block">
+              <a href="https://mmai.io/joon/">Joon Son Chung</a><sup>1</sup>
+            </span>
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Multimodal AI Lab, KAIST</span>
+            <span class="author-block"><sup>2</sup>42dot Inc</span>
+          </div>
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a href=""
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="ai ai-arxiv"></i>
+                  </span>
+                  <span>arXiv</span>
+                </a>
+              </span>
+              <!-- Video Link. -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="code_release_announement.html"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code</span>
+                  </a>
+              </span>
+              <!-- Dataset Link. -->
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+    <div class="hero-body">
+      <div class="">
+        <!-- <img src="static/images/fina_2.png" alt="Viterbi Decoding"> -->
+        <!-- <div class="divider"></div> -->
+        <img src="static/images/fina_1.png" alt="Inference Process">
+      </div>
+      <figcaption>
+        <p style="text-align: justify;">
+          <font color="432D57"><b>Figure 1:</b> Viterbi-based Speculative Decoding is illustrated as follows: (1) Multiple prediction
+                  heads generate several distributions per timestep simultaneously. (2) To optimize memory and
+                  computational efficiency, the dimensions of the transition matrix and state probabilities are reduced
+                  by selecting only the necessary rows and columns. (3) The best sequence is determined using
+                  Speculative Decoding, as described in Algorithm 1. The transition matrix computation for LibriTTS
+                  is completed in just 3 minutes. Additionally, topk sampling is employed to preserve diversity.
+        </font></p><font color="432D57">
+    </font></figcaption>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Abstract. -->
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p>
+            The goal of this paper is to accelerate codec-based
+            speech synthesis systems without compromising speech quality.
+            We propose an enhanced inference method that allows for flexible
+            trade-offs between speed and quality during inference without
+            requiring additional training.
+          </p>
+          <p>
+            Our core idea is to predict multiple
+            tokens per inference step of the AR module using multiple
+            prediction heads, resulting in a linear reduction in synthesis time
+            as the number of heads increases. Furthermore, we introduce a
+            novel speculative decoding technique that utilises a Viterbi-based
+            algorithm to select the optimal sequence of generated tokens at
+            each decoding step.
+          </p>
+          <p>
+            In our experiments, we demonstrate that the
+            time required to predict each token is reduced by a factor of 4
+            to 5 compared to baseline models, with minimal quality tradeoff or
+            even improvement in terms of speech intelligibility.
+          </p>
+        </div>
+      </div>
+    </div>
+    <!--/ Abstract. -->
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Qualitative comparing between USLM and USLM with 8 heads and Speculative Decoding</h2>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+          <thead>
+              <tr>
+                  <td scope="col" width="280px">
+                      <font color="432D57"><b>Prompt:</b> </font>
+                  </td>
+                  <td scope="col" width="280px">
+                      <font color="432D57"><b>USLM</b> </font>
+                  </td>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>USLM + Ours (~5.34x faster)</b> </font>
+                  </td>
+                  <!-- <td scope="col" width="280px">
+                    <font color="432D57"><b>VALLE</b> </font>
+                  </td>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>VALLE + Ours</b> </font>
+                  </td> -->
+              </tr>
+          </thead>
+          
+          
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/1284_1180_000027_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/1284_1180_000027_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/1284_1180_000027_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4970_29095_000003_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/4970_29095_000003_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/4970_29095_000003_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/6829_68771_000035_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/6829_68771_000035_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/6829_68771_000035_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000002_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/4446_2273_000002_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/4446_2273_000002_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/3575_170457_000044_000014.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/3575_170457_000044_000014.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/3575_170457_000044_000014.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/7021_85628_000018_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/7021_85628_000018_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/7021_85628_000018_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000043_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/4446_2273_000043_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/4446_2273_000043_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/237_126133_000015_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/237_126133_000015_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/237_126133_000015_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/8555_284447_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/8555_284447_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/8555_284447_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/6829_68771_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/6829_68771_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/6829_68771_000010_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2275_000013_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/4446_2275_000013_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/4446_2275_000013_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2275_000001_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/4446_2275_000001_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/4446_2275_000001_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/3575_170457_000010_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/3575_170457_000010_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/3575_170457_000010_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/6829_68769_000098_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm1/6829_68769_000098_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/uslm8/6829_68769_000098_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+
+          
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+
+<section class="section"></section>
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Qualitative comparing between VALLE and VALLE with 8 heads and Speculative Decoding</h2>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+          <thead>
+              <tr>
+                  <td scope="col" width="280px">
+                      <font color="432D57"><b>Prompt:</b> </font>
+                  </td>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>VALLE</b> </font>
+                  </td>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>VALLE + Ours (~4.56x faster)</b> </font>
+                  </td>
+              </tr>
+          </thead>
+          
+          
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000027_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/4446_2273_000027_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/4446_2273_000027_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/1284_1181_000028_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/1284_1181_000028_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/1284_1181_000028_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000006_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/4446_2273_000006_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/4446_2273_000006_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/260_123286_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/260_123286_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/260_123286_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/6829_68771_000012_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/6829_68771_000012_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/6829_68771_000012_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000001_000003.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/4446_2273_000001_000003.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/4446_2273_000001_000003.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/3575_170457_000046_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/3575_170457_000046_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/3575_170457_000046_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/1284_1180_000040_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/1284_1180_000040_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/1284_1180_000040_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/7021_85628_000004_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/7021_85628_000004_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/7021_85628_000004_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/3575_170457_000016_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/3575_170457_000016_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/3575_170457_000016_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/2961_961_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/2961_961_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/2961_961_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/7021_85628_000023_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/7021_85628_000023_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/7021_85628_000023_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/237_134493_000007_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/237_134493_000007_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/237_134493_000007_000004.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000022_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/4446_2273_000022_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/4446_2273_000022_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/gt/4446_2273_000002_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef1/4446_2273_000002_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/mos_samples/vallef8/4446_2273_000002_000006.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+
+
+          
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<section class="section"></section>
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Ablation study on topk (TABLE 2.1) with 8 heads</h2>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+          <thead>
+              <tr>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>topk=3</b> </font>
+                  </td>
+
+                  <td  width="280px">
+                    <font color="432D57"><b>topk=5</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=7</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=9</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=15</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=25</b> </font>
+                  </td>
+              </tr>
+          </thead>
+          
+          
+          
+          
+          
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK3/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK5/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK7/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK9/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK15/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK25/1284_1180_000005_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK3/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK5/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK7/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK9/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK15/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK25/260_123288_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK3/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK5/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK7/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK9/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK15/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK25/237_134500_000001_000000.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK3/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK5/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK7/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK9/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK15/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK25/4446_2273_000035_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK3/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK5/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK7/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK9/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK15/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk8_samples/TOPK25/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+
+
+
+          
+      </table>
+    </div>
+
+  </div>
+</section>
+
+<section class="section"></section>
+  <div class="container">
+
+    <div class="columns is-centered">
+      <div class="content">
+        <h2 class="title is-3">Ablation study on topk (TABLE 2.2) with 4 heads</h2>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="table" align="center" style="table-layout: fixed;word-break:break-word">
+          <thead>
+              <tr>
+                  <td scope="col" width="280px">
+                    <font color="432D57"><b>topk=3</b> </font>
+                  </td>
+
+                  <td  width="280px">
+                    <font color="432D57"><b>topk=5</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=7</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=9</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=15</b> </font>
+                  </td>
+                  <td width="280px">
+                    <font color="432D57"><b>topk=25</b> </font>
+                  </td>
+              </tr>
+          </thead>
+          
+          
+          
+          
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK3/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK5/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK7/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK9/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK15/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK25/5142_36600_000008_000007.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK3/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK5/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK7/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK9/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK15/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK25/4970_29095_000011_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK3/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK5/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK7/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK9/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK15/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK25/4970_29095_000018_000002.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK3/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK5/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK7/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK9/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK15/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK25/1284_1180_000008_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+          <tbody>
+            <tr>
+            
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK3/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK5/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK7/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK9/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK15/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+                <td scope="row"><audio controls="controls">
+                    <source src="static/topk4_samples/TOPK25/1284_1180_000007_000001.wav" autoplay="">Your browser does not support the audio element.
+                </audio></td>
+                
+            </tr>
+          </tbody>
+
+
+          
+          
+
+
+
+
+
+          
+      </table>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{nguyen23accelerating,
+  author    = {Tan Dat Nguyen, Ji-Hoon Kim, Jeongsoo Choi, Shukjae Choi, Jinseok Park, Younglo Lee, Joon Son Chung},
+  title     = {Accelerating Codec-based Speech Synthesis with Multi-Token Prediction and Speculative Decoding},
+  journal   = {arixv},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/paper/">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/signofthefour" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>

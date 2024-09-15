@@ -1,0 +1,11 @@
+{% for row in data %}
+<tbody>
+    <tr>
+    {% for model in row %}
+        <td scope="row"><audio controls="controls">
+            <source src="{{model.path}}" autoplay="">Your browser does not support the audio element.
+        </audio></td>
+        {% endfor %}
+    </tr>
+</tbody>
+{% endfor %}
